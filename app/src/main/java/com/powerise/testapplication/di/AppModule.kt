@@ -1,6 +1,7 @@
 package com.powerise.demoapp.di
 
 import com.powerise.testapplication.BuildConfig
+import com.powerise.testapplication.home.di.HomeComponent
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -10,9 +11,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 /**
- * Created by Krunal on 04-06-2018.
+ * Created by Krunal
  */
-@Module(subcomponents = arrayOf())
+@Module(subcomponents = arrayOf(HomeComponent::class))
 class AppModule {
 
     @Provides

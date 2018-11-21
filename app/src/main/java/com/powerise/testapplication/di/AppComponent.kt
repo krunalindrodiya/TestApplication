@@ -9,7 +9,7 @@ import dagger.android.AndroidInjectionModule
 
 
 /**
- * Created by Krunal on 04-06-2018.
+ * Created by Krunal
  */
 @Component(modules = arrayOf(AndroidInjectionModule::class, ActivityBuilder::class, AppModule::class))
 interface AppComponent {
