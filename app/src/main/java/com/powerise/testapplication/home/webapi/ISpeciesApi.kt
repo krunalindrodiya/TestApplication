@@ -8,9 +8,9 @@ import retrofit2.http.Query
 /**
  * Species web-services
  */
-interface SpeciesApi {
+interface ISpeciesApi {
 
     @GET("species/")
-    fun getSpecies(@Query("page") page: Int): Call<ArrayList<SpeciesResponse>>
+    fun getSpecies(@Query("page") page: Int): Call<SpeciesResponse>
 
 }

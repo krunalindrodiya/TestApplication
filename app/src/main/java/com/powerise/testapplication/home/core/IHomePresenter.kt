@@ -5,7 +5,7 @@ package com.powerise.testapplication.home.core
  */
 interface IHomePresenter {
 
-    fun getSpecies()
-
     fun unBindView()
+
+    fun getSpecies(page: Int)
 }

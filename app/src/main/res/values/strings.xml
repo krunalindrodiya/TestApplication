@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TestApplication</string>
+    <string name="msg_no_internet">No internet connection found, please check your internet connection.</string>
 </resources>
