@@ -77,8 +77,6 @@ class HomeActivity : AppCompatActivity(), IHomeView, IPageLoader {
 
         binding?.swipeContainer?.isEnabled = true
 
-
-
         if (homeViewModel.isProgressBarVisible) {
             homeViewModel.isProgressBarVisible = false
             homeViewModel.notifyChange()

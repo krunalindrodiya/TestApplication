@@ -54,10 +54,10 @@ class SpeciesAdapter(
 
             if (position <= (speciesList.size - 1)) {
                 val speciesViewModel = RowSpeciesViewModel(
-                    currentState = if (speciesList[position].isExtinct) "Active" else "Extinct",
-                    name = speciesList[position].name,
-                    classification = speciesList[position].classification,
-                    designation = speciesList[position].designation,
+                    currentState = "Current State : " + if (speciesList[position].isExtinct) "Active" else "Extinct",
+                    name = "Name : " + speciesList[position].name,
+                    classification = "Classification : " + speciesList[position].classification,
+                    designation = "Designation : " + speciesList[position].designation,
                     onClickListener = View.OnClickListener {
                         speciesList[position].isExtinct = !speciesList[position].isExtinct
                         notifyItemChanged(position)
