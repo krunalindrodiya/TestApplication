@@ -7,5 +7,7 @@ interface IHomePresenter {
 
     fun unBindView()
 
-    fun getSpecies(page: Int)
+    fun getSpecies()
+
+    fun clearPageCount()
 }

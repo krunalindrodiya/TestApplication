@@ -7,4 +7,10 @@ class HomeViewModel : BaseObservable() {
 
     @Bindable
     var isProgressBarVisible: Boolean = false
+
+    @Bindable
+    var isErrorVisible: Boolean = false
+
+    @Bindable
+    var textError: String = ""
 }

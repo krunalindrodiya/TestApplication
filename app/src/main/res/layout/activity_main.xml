@@ -13,23 +13,55 @@
                 type="com.powerise.testapplication.home.viewmodel.HomeViewModel"/>
     </data>
 
-    <android.support.constraint.ConstraintLayout
+
+    <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipeContainer"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".home.HomeActivity">
+            android:layout_height="match_parent">
 
 
-        <ProgressBar
-                android:id="@+id/progressBar"
-                tools:visibility="visible"
-                android:visibility="@{model.progressBarVisible ? View.VISIBLE : View.GONE}"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+        <android.support.constraint.ConstraintLayout
+                android:layout_margin="@dimen/dp_5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".home.HomeActivity">
+
+            <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+
+            <TextView
+                    android:id="@+id/textError"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    tools:text="Text Error"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    tools:visibility="visible"
+                    android:visibility="@{model.errorVisible ? View.VISIBLE : View.GONE}"
+                    android:text="@{model.textError}"
+                    android:textColor="@color/colorBlack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            <ProgressBar
+                    android:id="@+id/progressBar"
+                    tools:visibility="visible"
+                    android:visibility="@{model.progressBarVisible ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
 
 
-    </android.support.constraint.ConstraintLayout>
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
 </layout>
