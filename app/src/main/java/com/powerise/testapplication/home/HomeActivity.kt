@@ -65,7 +65,11 @@ class HomeActivity : AppCompatActivity(), IHomeView, IPageLoader {
             binding?.swipeContainer?.isEnabled = false
             homePresenter.getSpecies()
         } else {
-            showMessage(getString(R.string.msg_no_internet))
+            if (homeViewModel.isProgressBarVisible) {
+                homeViewModel.isProgressBarVisible = false
+                homeViewModel.notifyPropertyChanged(BR.isProgressBarVisible)
+            }
+            showMessage(getString(R.string.msg_no_network))
         }
     }
 
@@ -73,9 +77,7 @@ class HomeActivity : AppCompatActivity(), IHomeView, IPageLoader {
 
         binding?.swipeContainer?.isEnabled = true
 
-        if (binding?.swipeContainer?.isRefreshing == true) {
-            binding?.swipeContainer?.isRefreshing = false
-        }
+
 
         if (homeViewModel.isProgressBarVisible) {
             homeViewModel.isProgressBarVisible = false
@@ -106,25 +108,24 @@ class HomeActivity : AppCompatActivity(), IHomeView, IPageLoader {
                             showMessage(getString(R.string.msg_server_error))
                         }
                     } else {
-                        showMessage(getString(R.string.msg_server_error))
+                        showMessage(throwable.message ?: getString(R.string.msg_server_error))
                     }
                 } else {
                     if (adapter != null) {
                         adapter?.noElementFound()
                     }
-                    showMessage(getString(R.string.msg_server_error))
+                    showMessage(throwable.message ?: getString(R.string.msg_server_error))
                 }
             }
             else -> {
                 if (adapter != null) {
                     adapter?.noElementFound()
-                    showMessage(getString(R.string.msg_server_error))
-                } else {
-                    homeViewModel.isErrorVisible = true
-                    homeViewModel.textError = getString(R.string.msg_server_error)
-                    homeViewModel.notifyChange()
                 }
+                showMessage(getString(R.string.msg_server_error))
             }
+        }
+        if (binding?.swipeContainer?.isRefreshing == true) {
+            binding?.swipeContainer?.isRefreshing = false
         }
     }
 
@@ -134,8 +135,14 @@ class HomeActivity : AppCompatActivity(), IHomeView, IPageLoader {
     }
 
     override fun showMessage(message: String) {
-        binding?.progressBar?.let {
-            Snackbar.make(it, message, Snackbar.LENGTH_LONG).show()
+        if (adapter != null) {
+            binding?.progressBar?.let {
+                Snackbar.make(it, message, Snackbar.LENGTH_LONG).show()
+            }
+        } else {
+            homeViewModel.isErrorVisible = true
+            homeViewModel.textError = message
+            homeViewModel.notifyChange()
         }
     }
 
